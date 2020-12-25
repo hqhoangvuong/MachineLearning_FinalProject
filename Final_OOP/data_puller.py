@@ -28,12 +28,12 @@ class DataPuller:
     def pureData(self):
         self.data_frame['Humidity'] = self.data_frame['Humidity'].str.strip().str.replace('"','').astype(float)
         self.data_frame['Temperature'] = self.data_frame['Temperature'].str.strip().str.replace('"','').astype(float)
-        self.data_frame['Temperature']['UnixTime'] = self.data_frame['Temperature']['UnixTime'].str.strip().str.replace('"','').astype(np.int64)
-        self.data_frame['Temperature'].dropna(how = 'all', inplace = True)
-        self.data_frame['Temperature']['Humidity'].fillna(self.data_frame['Temperature']['Humidity'].mean(), inplace = True)
-        self.data_frame['Temperature']['Temperature'].fillna(self.data_frame['Temperature']['Temperature'].mean(), inplace = True)
-        self.data_frame['Temperature'].reset_index(drop = True, inplace = True)
-        
+        self.data_frame['UnixTime'] = self.data_frame['UnixTime'].str.strip().str.replace('"','').astype(np.int64)
+        self.data_frame.dropna(how = 'all', inplace = True)
+        self.data_frame['Humidity'].fillna(self.data_frame['Humidity'].mean(), inplace = True)
+        self.data_frame['Temperature'].fillna(self.data_frame['Temperature'].mean(), inplace = True)
+        self.data_frame.reset_index(drop = True, inplace = True)
+
     def proccessData(self):
         self.pureData()
         for i, j in self.data_frame.iterrows():
