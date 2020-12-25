@@ -15,14 +15,14 @@ import matplotlib.pyplot as plt
 class DataPuller:
     firebase_application_url = ''
     firebase_realtimedb_path = ''
-    firebase = ''
+    firebase_app = ''
     data_frame = pd.DataFrame()
     
     def __init__(self, application_url, db_path):
         self.firebase_application_url = application_url
         self.firebase_realtimedb_path = db_path
-        self.firebase = firebase.FirebaseApplication(self.firebase_application_url)
-        result = self.firebase.get(self.firebase_realtimedb_path, None)
+        self.firebase_app = firebase.FirebaseApplication(self.firebase_application_url)
+        result = self.firebase_app.get(self.firebase_realtimedb_path, None)
         self.data_frame = pd.DataFrame.from_dict(result).T
         
     def pureData(self):
