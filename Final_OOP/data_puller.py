@@ -81,7 +81,7 @@ class DataPuller:
         sns.heatmap(data, cmap='coolwarm', annot=True)
         filename = 'figs/{0}.png'
         plt.title(figname)
-        plt.savefig(filename.format(figname))
+        plt.savefig(filename.format(figtitle))
         plt.show()
         
     def heatmap_temp(self):
