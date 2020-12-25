@@ -11,6 +11,7 @@ from firebase import firebase
 import time
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
 class DataPuller:
     firebase_application_url = ''
@@ -54,5 +55,24 @@ class DataPuller:
         self.data_frame.insert(4, 'Minute', minute_list)
         return self.data_frame
         
+    def mkdir(self):
+        dir_saved_dataframe = os.path.join('saved_dataframe')
+        dir_figs = os.path.join('figs')
+        
+        if not os.path.exists(dir_saved_dataframe):
+            os.mkdir(dir_saved_dataframe)
+            
+        if not os.path.exists(dir_figs):
+            os.mkdir(dir_figs)
+        
+    def saveData(self, filename):
+        self.mkdir()
+        path = r'saved_dataframe/df_pure_19_12_20.csv'
+        
+        if(filename):
+            path = r'saved_dataframe/{0}'.format(filename)
+            
+        self.data_frame.to_csv(path, index=False, header=True)
+        print('Saved dataframe at {0}'.format(path))
         
     
