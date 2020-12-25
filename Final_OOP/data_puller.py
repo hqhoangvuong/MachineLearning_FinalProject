@@ -22,7 +22,7 @@ class DataPuller:
         self.firebase_application_url = application_url
         self.firebase_realtimedb_path = db_path
         self.firebase = firebase.FirebaseApplication(self.firebase_application_url)
-        result = firebase.get(self.firebase_realtimedb_path, None)
+        result = self.firebase.get(self.firebase_realtimedb_path, None)
         self.data_frame = pd.DataFrame.from_dict(result).T
         
     def pureData(self):
