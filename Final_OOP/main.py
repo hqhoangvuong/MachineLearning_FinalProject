@@ -13,7 +13,7 @@ def main():
     df = data_puller.getData()
     
     data_processor = DataProcessing(df)
-    X_train, X_test, y_train, y_test = data_processor(time_interval_error_rate = 900, feature_scale = True)
+    X_train, X_test, y_train, y_test = data_processor.getSet(time_interval_error_rate = 900, feature_scale = True)
     
     trainer = Trainer(X_train, y_train, X_test, y_test)
     liner_model = trainer.trainLinerRegression()
