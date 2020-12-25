@@ -35,7 +35,7 @@ class DataPuller:
         self.data_frame['Temperature'].fillna(self.data_frame['Temperature'].mean(), inplace = True)
         self.data_frame.reset_index(drop = True, inplace = True)
 
-    def proccessData(self):
+    def getData(self):
         self.pureData()
         for i, j in self.data_frame.iterrows():
             if j['Temperature'] > 35.0:
@@ -84,11 +84,11 @@ class DataPuller:
         plt.savefig(filename.format(figtitle))
         plt.show()
         
-    def heatmap_temp(self):
+    def heatmapTemp(self):
         temp_hour = pd.crosstab(self.data_frame['Hour'], self.data_frame['Minute'], values = self.data_frame['Temperature'], aggfunc = 'mean')
         self.heatmap(temp_hour, 'avg_temp_hourly', 'Average Tempearture in HCMC from 0h to 23h')
     
-    def heatmap_hum(self):
+    def heatmapHum(self):
         hum_hour = pd.crosstab(self.data_frame['Hour'], self.data_frame['Minute'], values = self.data_frame['Humidity'], aggfunc='mean')
         self.heatmap(hum_hour, 'avg_hum_hourly', 'Average Humidity in HCMC from 0h to 23h')
     
