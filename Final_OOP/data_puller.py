@@ -75,4 +75,24 @@ class DataPuller:
         self.data_frame.to_csv(path, index=False, header=True)
         print('Saved dataframe at {0}'.format(path))
         
+    def heatmap(self, data, figname = 'untitle', figtitle = 'untitle'):
+        self.mkdir()
+        plt.figure(figsize=(35, 20))
+        sns.heatmap(data, cmap='coolwarm', annot=True)
+        filename = 'figs/{0}.png'
+        plt.title(figname)
+        plt.savefig(filename.format(figname))
+        plt.show()
+        
+    def heatmap_temp(self):
+        temp_hour = pd.crosstab(self.data_frame['Hour'], self.data_frame['Minute'], values = self.data_frame['Temperature'], aggfunc = 'mean')
+        self.heatmap(temp_hour, 'avg_temp_hourly', 'Average Tempearture in HCMC from 0h to 23h')
+    
+    def heatmap_hum(self):
+        hum_hour = pd.crosstab(self.data_frame['Hour'], self.data_frame['Minute'], values = self.data_frame['Humidity'], aggfunc='mean')
+        self.heatmap(hum_hour, 'avg_hum_hourly', 'Average Humidity in HCMC from 0h to 23h')
+    
+        
+    
+        
     
