@@ -38,6 +38,7 @@ class Trainer:
         print('\n')
         
         pred_test= model.predict(self.X_test)
+        print('Evaluate on test set:')
         print('Mean squared error: {0}'.format(np.sqrt(mean_squared_error(self.y_test, pred_test))))
         print('R2 Score: {0}'.format(r2_score(self.y_test, pred_test)))
         
